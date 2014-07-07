@@ -25,7 +25,7 @@ module Yt
       #   subscriptions to a channel.
       # @see https://developers.google.com/youtube/v3/docs/subscriptions#resource
       def new_item(data)
-        Yt::Subscription.new id: data['id'], auth: @auth
+        Yt::Subscription.new id: data['id'], snippet: data['snippet'], auth: @auth
       end
 
       # @note Google API must have some caching layer by which if we try to

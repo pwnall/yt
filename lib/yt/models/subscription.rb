@@ -6,11 +6,19 @@ module Yt
     # @see https://developers.google.com/youtube/v3/docs/subscriptions
     class Subscription < Base
       # @return [String] the ID that uniquely identify a YouTube subscription.
-      attr_reader :id
+      attr_reader :id, :auth
+
+      has_one :snippet
+      # @note: Snippet also includes channel_id and channel_title, but it may
+      # be confusing to expose them, since they refer to the channel that
+      # created the subscription, not the channel it subscribed to.
+      delegate :title, :description, :thumbnail_url, :published_at,
+        to: :snippet
 
       def initialize(options = {})
         @id = options[:id]
         @auth = options[:auth]
+        @snippet = Snippet.new(data: options[:snippet]) if options[:snippet]
       end
 
       def delete(options = {})

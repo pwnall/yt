@@ -5,6 +5,13 @@ describe Yt::Subscription do
   subject(:subscription) { Yt::Subscription.new id: id }
   let(:msg) { {response_body: {error: {errors: [{reason: reason}]}}}.to_json }
 
+  describe '#snippet' do
+    context 'given fetching a subscription returns a snippet' do
+      let(:attrs) { {snippet: {"title"=>"Fullscreen"}} }
+      it { expect(subscription.snippet).to be_a Yt::Snippet }
+    end
+  end
+
   describe '#exists?' do
     context 'given a subscription with an id' do
       let(:id) { 'CBl6OoF0BpiV' }

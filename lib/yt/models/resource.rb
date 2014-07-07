@@ -32,7 +32,7 @@ module Yt
 
     private
 
-      # @return [Hash] the parameters to submit to YouTube to update a playlist.
+      # @return [Hash] the parameters to submit to YouTube to update a resource.
       # @see https://developers.google.com/youtube/v3/docs/playlists/update
       # @see https://developers.google.com/youtube/v3/docs/videos/update
       def update_params
@@ -42,7 +42,7 @@ module Yt
         end
       end
 
-      # @return [Hash] the parameters to submit to YouTube to delete a playlist.
+      # @return [Hash] the parameters to submit to YouTube to delete a resource.
       # @see https://developers.google.com/youtube/v3/docs/playlists/delete
       def delete_params
         super.tap{|params| params[:params] = {id: @id}}
